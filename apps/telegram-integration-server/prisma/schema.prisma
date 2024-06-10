@@ -1,0 +1,33 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model TelegramChannel {
+  channelId   String?
+  channelName String?
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  updatedAt   DateTime @updatedAt
+}
+
+model TelegramConfig {
+  apiHash     String?
+  apiId       String?
+  createdAt   DateTime @default(now())
+  id          String   @id @default(cuid())
+  phoneNumber String?
+  updatedAt   DateTime @updatedAt
+}
+
+model TradeSignal {
+  channelId String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  signal    String?
+  updatedAt DateTime @updatedAt
+}
